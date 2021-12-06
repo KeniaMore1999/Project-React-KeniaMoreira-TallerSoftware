@@ -44,25 +44,20 @@ function App() {
       setData({...data})
     }
   }
-
-  <Cantidad.Provider value={cantidad}>
-      <Datos.Provider value={data}>
-      <Fragment>
-        <Navbar cantidad={cantidad} productos={data.carrito}  borrarCarrito={borrarCarrito}/>
-        <Articulos agregarAlCarro={agregarAlCarro} data={data} erased={erased}/>
-      </Fragment>
-      </Datos.Provider>
-    </Cantidad.Provider>
   
   useEffect(() => {
     setCantidad(data.carrito.reduce((acum, actual) => acum + actual.cantidad, 0)) 
    }, [data]);
 
   return (
-    <Fragment>
-      <Navbar cantidad={cantidad} productos={data.carrito} borrarCarrito={borrarCarrito} />
-      <Articulos agregarAlCarro={agregarAlCarro} data={data} erased={erased}/>
-    </Fragment>
+    <Cantidad.Provider value={cantidad}>
+      <Datos.Provider value={data}>
+        <Fragment>
+          <Navbar cantidad={cantidad} productos={data.carrito}  borrarCarrito={borrarCarrito}/>
+          <Articulos agregarAlCarro={agregarAlCarro} data={data} erased={erased}/>
+        </Fragment>
+      </Datos.Provider>
+    </Cantidad.Provider>
   );
 }
 
